@@ -19,3 +19,17 @@ exports.newUser = (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.deleteUser = (req,res) =>{
+  User.deleteOne({_id:req.params.id}).then((data)=>{
+      console.log('Success')
+      res.send(data)
+ })
+};
+
+exports.getUser=(req,res)=>{
+  User.findById({_id:req.params.id}).then((data)=>{
+console.log('Success')
+      res.send(data)
+  })
+};

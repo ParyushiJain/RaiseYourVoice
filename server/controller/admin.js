@@ -19,3 +19,10 @@ exports.newAdmin = (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.deleteAdmin = (req,res) =>{
+  Admin.deleteOne({_id:req.params.id}).then((data)=>{
+      console.log('Success')
+      res.send(data)
+ })
+};
