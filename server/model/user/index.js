@@ -4,19 +4,14 @@ const UserModel = new Mongoose.Schema({
         type : String,
         required : true
     },
-    Password : {
-        type : String,
-        required : true
-    }
-    ,
     Name : {
         type : String
     },
-    Contact : {
-        type : Number,
-        required : true
+    Email : {
+        type : String,
+        required : true,
+        unique : true
     } 
-  
 },
 {
     collection : 'User'

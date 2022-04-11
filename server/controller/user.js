@@ -1,24 +1,30 @@
 const mongoose = require("mongoose");
 const User = require("../model/user/");
 
-exports.newUser = (req, res) => {
+exports.newUser = async (req, res) => {
   try {
     if (!req.body) {
       res.send('Invalid Request')
     }
+    const existingUser = await User.findOne({Email : req.user.email});
+    if(existingUser) {
+        res.send({status:200, message : "User already registered!"})
+      }
+      else{ 
+        console.log(req.user)
     const user = new User({
-      Username: req.body.Username,
-      Password: req.body.Password,
-      Name: req.body.Name,
-      Contact:req.body.Contact,
+      Username: req.user.user_id,
+      Name: req.user.name,
+      Email:req.user.email,
     });
     user.save().then((data) => {
         res.send(data)
-    });
-  } catch (err) {
+    })
+    }
+   } catch (err) {
     res.status(500).send(err);
   }
-};
+}
 
 exports.deleteUser = (req,res) =>{
   User.deleteOne({_id:req.params.id}).then((data)=>{

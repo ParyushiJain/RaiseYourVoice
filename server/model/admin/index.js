@@ -3,14 +3,19 @@ const AdminModel = new Mongoose.Schema({
     Username : {
         type : String,
     },
-    Password : {
-        type : String
-    },
     NGO : {
         type : String
     },
-    Contact : {
-        type : Number
+    Email : {
+        type : String,
+        required : true,
+        unique : true
+    },
+    Picture : {
+        type : String
+    },
+    Name : {
+        type : String
     }
 },
 {
