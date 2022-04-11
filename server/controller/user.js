@@ -8,7 +8,7 @@ exports.newUser = async (req, res) => {
     }
     const existingUser = await User.findOne({Email : req.user.email});
     if(existingUser) {
-        res.send({status:200, message : "User already registered!"})
+        res.send(existingUser)
       }
       else{ 
         console.log(req.user)
@@ -16,6 +16,7 @@ exports.newUser = async (req, res) => {
       Username: req.user.user_id,
       Name: req.user.name,
       Email:req.user.email,
+      Photo:req.user.picture
     });
     user.save().then((data) => {
         res.send(data)
@@ -32,7 +33,6 @@ exports.deleteUser = (req,res) =>{
       res.send(data)
  })
 };
-
 exports.getUser=(req,res)=>{
   User.findById({_id:req.params.id}).then((data)=>{
 console.log('Success')

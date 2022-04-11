@@ -8,7 +8,7 @@ exports.newAdmin = async (req, res) => {
     }
     const existingAdmin = await Admin.find({Email : req.user.email});
         if(existingAdmin) {
-          res.send({status:200, message : "User already registered!"})
+          res.send(existingAdmin)
         }
         else{ 
           const admin = new Admin({
@@ -16,7 +16,7 @@ exports.newAdmin = async (req, res) => {
             Name : req.user.name,
             NGO: req.body.NGO,
             Email:req.user.email,
-            Picture:req.user.picture
+            Photo:req.user.picture
           });
           admin.save().then((data) => {
               res.send(data)
@@ -32,4 +32,12 @@ exports.deleteAdmin = (req,res) =>{
       console.log('Success')
       res.send(data)
  })
+};
+
+
+exports.getAdmin=(req,res)=>{
+  Admin.findById({_id:req.params.id}).then((data)=>{
+  console.log('Success')
+      res.send(data)
+  })
 };

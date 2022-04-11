@@ -11,7 +11,7 @@ const AdminModel = new Mongoose.Schema({
         required : true,
         unique : true
     },
-    Picture : {
+    Photo : {
         type : String
     },
     Name : {

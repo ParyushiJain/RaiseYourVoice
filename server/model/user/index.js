@@ -11,7 +11,10 @@ const UserModel = new Mongoose.Schema({
         type : String,
         required : true,
         unique : true
-    } 
+    },
+    Photo : {
+        type: String
+    }
 },
 {
     collection : 'User'

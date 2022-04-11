@@ -9,14 +9,13 @@ const dotenv = require('dotenv');
 dotenv.config( { path : 'config.env'} )
 const morgan = require('morgan');
 const path = require('path');
+connectDB();
 app.use(express.json());
 app.use(morgan('tiny'));
 app.disable('etag');
 //app.use(passport.initialize());
 //app.use(passport.session());
 //require("./server/middleware/passportS")(passport);
-
-connectDB();
 app.use(express.urlencoded({ extended : true}))
  app.use('/', require('./server/routes/router'))
 // app.use(uploads)
