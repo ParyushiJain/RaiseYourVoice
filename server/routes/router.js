@@ -23,6 +23,8 @@ router.get("/api/getAllAdmin",Admin.getAllAdmin);
 router.get("/api/getAllComplaintByOne/:id",Complaint.getAllComplaintByOne);
 router.get("/api/getAllComplaintForAdmin/:id",Complaint.getAllComplaintForAdmin);
 router.put("/api/updateStatus/:id",Complaint.updateStatus);
+
+router.get("/api/getNameAndId",Admin.getNameAndId);
  
 
  

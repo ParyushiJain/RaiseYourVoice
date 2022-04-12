@@ -73,3 +73,13 @@ exports.getAdminbyUid=(req,res)=>{
     }
   })
 };
+
+exports.getNameAndId=(req,res)=>{
+  try{
+  Admin.find({}).select(["Name","_id"]).then((data)=>{
+      res.send(data)
+  })
+}catch (err) {
+  res.status(500).send(err);
+}
+};
