@@ -6,14 +6,15 @@ exports.newUser = async (req, res) => {
     if (!req.body) {
       res.send('Invalid Request')
     }
-    const existingUser = await User.findOne({Email : req.user.email});
+    const existingUser = await User.findOne({Username : req.user.uid});
     if(existingUser) {
         res.send(existingUser)
+        console.log("here ")
       }
       else{ 
-        console.log(req.user)
-    const user = new User({
-      Username: req.user.user_id,
+       console.log("here : " + req.user)
+      const user = new User({
+      Username: req.user.uid,
       Name: req.user.name,
       Email:req.user.email,
       Photo:req.user.picture
@@ -58,4 +59,16 @@ console.log('Success')
 }catch (err) {
   res.status(500).send(err);
 }
+};
+
+exports.getUserbyUid=(req,res)=>{
+  User.findOne({Username:req.user.user_id}).then((data)=>{
+    if(data) {
+      console.log(data)
+      res.send(data)
+    }
+    else{
+      res.send({message:  "Not Found"})
+    }
+  })
 };
