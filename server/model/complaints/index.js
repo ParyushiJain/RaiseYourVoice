@@ -20,7 +20,21 @@ const ComplaintModel = new Mongoose.Schema({
     },
     Relation : {
         type : String
-    }
+    },
+    Status:{
+        type:Number
+        
+    },
+    UserId:{
+        type : Mongoose.Schema.Types.ObjectId,
+        require:true,
+        ref:"User"
+    },
+   AdminId:{
+    type : Mongoose.Schema.Types.ObjectId,
+    require:true,
+    ref:"Admin"
+   }
 },
 {
     collection : 'Complaint'

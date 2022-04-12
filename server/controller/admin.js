@@ -21,23 +21,42 @@ exports.newAdmin = async (req, res) => {
           admin.save().then((data) => {
               res.send(data)
           });
-        } 
+        }   
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
 exports.deleteAdmin = (req,res) =>{
+  try{
   Admin.deleteOne({_id:req.params.id}).then((data)=>{
       console.log('Success')
       res.send(data)
  })
+}catch (err) {
+  res.status(500).send(err);
+}
 };
 
 
 exports.getAdmin=(req,res)=>{
+  try{
   Admin.findById({_id:req.params.id}).then((data)=>{
-  console.log('Success')
+console.log('Success')
       res.send(data)
   })
+}catch (err) {
+  res.status(500).send(err);
+}
+};
+
+exports.getAllAdmin=(req,res)=>{
+  try{
+  Admin.find().then((data)=>{
+console.log('Success')
+      res.send(data)
+  })
+}catch (err) {
+  res.status(500).send(err);
+}
 };

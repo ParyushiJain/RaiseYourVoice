@@ -28,14 +28,34 @@ exports.newUser = async (req, res) => {
 }
 
 exports.deleteUser = (req,res) =>{
+  try{
   User.deleteOne({_id:req.params.id}).then((data)=>{
       console.log('Success')
       res.send(data)
  })
+}catch (err) {
+  res.status(500).send(err);
+}
 };
+
 exports.getUser=(req,res)=>{
+  try{
   User.findById({_id:req.params.id}).then((data)=>{
 console.log('Success')
       res.send(data)
   })
+}catch (err) {
+  res.status(500).send(err);
+}
+};
+
+exports.getAllUser=(req,res)=>{
+  try{
+  User.find().then((data)=>{
+console.log('Success')
+      res.send(data)
+  })
+}catch (err) {
+  res.status(500).send(err);
+}
 };

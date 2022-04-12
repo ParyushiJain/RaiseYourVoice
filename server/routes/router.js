@@ -13,5 +13,15 @@ router.delete("/api/deleteUser/:id",User.deleteUser);
 router.delete("/api/deleteComplaint/:id",Complaint.deleteComplaint);
 router.get("/api/getUser/:id",User.getUser);
 
+router.get("/api/getAdmin/:id",Admin.getAdmin);
+router.get("/api/getComplaint/:id",Complaint.getComplaint);
+router.get("/api/getAllComplaint",Complaint.getAllComplaint);
+router.get("/api/getAllUser",User.getAllUser);
+router.get("/api/getAllAdmin",Admin.getAllAdmin);
+router.get("/api/getAllComplaintByOne/:id",Complaint.getAllComplaintByOne);
+router.get("/api/getAllComplaintForAdmin/:id",Complaint.getAllComplaintForAdmin);
+router.put("/api/updateStatus/:id",Complaint.updateStatus);
+ 
+
  
 module.exports = router;
