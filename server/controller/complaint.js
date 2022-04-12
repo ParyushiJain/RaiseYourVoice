@@ -23,8 +23,13 @@ exports.newComplaint = (req, res) => {
 };
 
 exports.deleteComplaint = (req,res) =>{
-  Complaint.deleteOne({_id:req.params.id}).then((data)=>{
-      console.log('Success')
-      res.send(data)
- })
+    User.findOne({Username:req.user.user_id}).then((data)=>{
+      if(data) {
+        console.log(data)
+        res.send(data)
+      }
+      else{
+        res.send({message:  "Not Found"})
+      }
+    })
 };

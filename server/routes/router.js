@@ -12,6 +12,8 @@ router.delete("/api/deleteAdmin/:id",Admin.deleteAdmin);
 router.delete("/api/deleteUser/:id",User.deleteUser);
 router.delete("/api/deleteComplaint/:id",Complaint.deleteComplaint);
 router.get("/api/getUser/:id",User.getUser);
+router.get("/api/getadminbyUID/",decodeToken,Admin.getAdminbyUid);
+router.get("/api/getuserbyUID/",decodeToken,User.getUserbyUid);
 
  
 module.exports = router;

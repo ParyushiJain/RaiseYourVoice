@@ -6,7 +6,9 @@ exports.newAdmin = async (req, res) => {
     if (!req.body) {
       res.send('Invalid Request')
     }
-    const existingAdmin = await Admin.find({Email : req.user.email});
+    console.log(req.user.Username)
+    const existingAdmin = await Admin.findOne({Username : req.user.uid});
+    console.log(existingAdmin)
         if(existingAdmin) {
           res.send(existingAdmin)
         }
@@ -39,5 +41,16 @@ exports.getAdmin=(req,res)=>{
   Admin.findById({_id:req.params.id}).then((data)=>{
   console.log('Success')
       res.send(data)
+  })
+};
+exports.getAdminbyUid=(req,res)=>{
+  Admin.findOne({Username:req.user.user_id}).then((data)=>{
+    console.log(req.user.user_id,data)
+    if(data) {
+      res.send(data)
+    }
+    else{
+      res.send({message:  "Not Found"})
+    }
   })
 };
