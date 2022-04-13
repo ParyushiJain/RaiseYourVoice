@@ -35,7 +35,7 @@ export function useAuthUpdate() {
         if(Usr!=null) {
             Usr = JSON.parse(Usr)
             try{
-                axios.get('http://localhost:5000/api/get'+Usr.role+'byUID/',{headers:  Usr}).then((data)=>{
+                axios.get('/api/get'+Usr.role+'byUID/',{headers:  Usr}).then((data)=>{
                     if(data) {
                         const User  = data.data
                         User["role"] = Usr.role
