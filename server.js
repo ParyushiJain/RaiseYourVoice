@@ -19,10 +19,10 @@ app.use(express.urlencoded({
 app.use('/', require('./server/routes/router'))
 // app.use(uploads)
 
-app.use(express.static(path.join(__dirname , 'client/build')));
+app.use(express.static(path.join(__dirname , './client/build')));
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname ,'client/build/','index.html')
+    path.join(__dirname ,'./client/build/','index.html')
   );
 });
 const PORT = process.env.PORT || 8000
