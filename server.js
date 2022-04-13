@@ -1,26 +1,31 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-//const passport = require("passport");
-//const uploads = require('./server/middleware/Uploads/')
 app.use(cors());
 const connectDB = require('./server/database/');
 const dotenv = require('dotenv');
-dotenv.config( { path : 'config.env'} )
+dotenv.config({
+  path: 'config.env'
+})
 const morgan = require('morgan');
 const path = require('path');
 connectDB();
 app.use(express.json());
 app.use(morgan('tiny'));
 app.disable('etag');
-//app.use(passport.initialize());
-//app.use(passport.session());
-//require("./server/middleware/passportS")(passport);
-app.use(express.urlencoded({ extended : true}))
- app.use('/', require('./server/routes/router'))
+app.use(express.urlencoded({
+  extended: true
+})) 
+app.use('/', require('./server/routes/router'))
 // app.use(uploads)
 
-
-app.listen(5000, () => {
+app.use(express.static(path.join(__dirname , 'client/build')));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname ,'client/build/','index.html')
+  );
+});
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
   console.log("listening on port 5000");
 });
