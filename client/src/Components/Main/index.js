@@ -26,7 +26,7 @@ export default function Main() {
         img : AdminBanner,
         link : "viewComplaints"
     }
-   
+    const {LocalUser} = useAuth();
     return (
          {Loading} ?
          <>
@@ -35,8 +35,12 @@ export default function Main() {
          <Routes>
          <Route path="/login" element={<Auth />} ></Route>
          <Route path="/admin/login" element={<Auth />} ></Route>
-         <Route path="/" element={<Banner content = {contentUser}/>} ></Route>
-         <Route path="/admin/" element={<Banner content = {contentAdmin}/>} ></Route>
+         {
+             LocalUser.role==='admin'? <Route path="/" element={<Banner content = {contentAdmin}/>} ></Route> 
+             :
+             <Route path="/" element={<Banner content = {contentUser}/>} ></Route>
+         }
+       
          <Route path="/viewComplaints" element={<ViewAll/>} ></Route>
          <Route path="/newComplaint" element={<ComplaintForm/>} ></Route>
          <Route path="/Complaint/:id" element={<VerticalBox/>} ></Route>
