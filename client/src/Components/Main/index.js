@@ -41,9 +41,9 @@ export default function Main() {
              <Route path="/" element={<Banner content = {contentUser}/>} ></Route>
          }
        
-         <Route path="/viewComplaints" element={<ViewAll/>} ></Route>
-         <Route path="/newComplaint" element={<ComplaintForm/>} ></Route>
-         <Route path="/Complaint/:id" element={<VerticalBox/>} ></Route>
+         <Route path="/viewComplaints" element={ LocalUser? <ViewAll/>: <Auth/>} ></Route>
+         <Route path="/newComplaint" element={LocalUser?<ComplaintForm/>: <Auth/>} ></Route>
+         <Route path="/Complaint/:id" element={LocalUser?<VerticalBox/>:<Auth/>} ></Route>
          </Routes>
      </div>
      </> :
